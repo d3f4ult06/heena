@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>i MISs YOU HEENA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Sacramento&family=Poppins:wght@300;500&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: url('img/ayee.png') no-repeat center center/cover;
+      font-family: 'Sacramento', cursive;
+      color: #fff;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 4rem;
+      letter-spacing: 2px;
+      animation: fadeIn 3s ease-in-out, glow 2s infinite alternate;
+      text-shadow: 0 0 10px #ff99cc, 0 0 20px #ff66b2, 0 0 40px #ff3399;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 5px #ff99cc, 0 0 10px #ff66b2; }
+      to { text-shadow: 0 0 20px #ff66b2, 0 0 40px #ff3399; }
+    }
+
+    .hearts, .stars {
+      position: absolute;
+      bottom: -50px;
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      pointer-events: none;
+    }
+
+    .heart, .star {
+      width: 20px;
+      height: 20px;
+      position: relative;
+      animation: floatUp 8s infinite ease-in;
+    }
+
+    .heart {
+      background: #ff4d88;
+      transform: rotate(45deg);
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      width: 20px;
+      height: 20px;
+      background: #ff4d88;
+      border-radius: 50%;
+      position: absolute;
+    }
+
+    .heart::before { top: -10px; left: 0; }
+    .heart::after { left: -10px; top: 0; }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) rotate(45deg); opacity: 1; }
+      100% { transform: translateY(-700px) rotate(45deg); opacity: 0; }
+    }
+
+    .star {
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 
+                         79% 91%, 50% 70%, 21% 91%, 32% 57%, 
+                         2% 35%, 39% 35%);
+      background: #fff8dc;
+      box-shadow: 0 0 10px #fff, 0 0 20px pink;
+    }
+
+    /* Music button */
+    #music-btn {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 12px 28px;
+      font-size: 1.2rem;
+      font-family: 'Poppins', sans-serif;
+      background: #ff66b2;
+      border: none;
+      border-radius: 30px;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 0 10px #ff66b2, 0 0 20px #ff99cc;
+      transition: all 0.3s ease;
+    }
+
+    #music-btn:hover {
+      background: #ff3399;
+      box-shadow: 0 0 20px #ff3399, 0 0 40px #ff66cc;
+      transform: translateX(-50%) scale(1.1);
+    }
+  </style>
+</head>
+<body>
+  <h1>i MISs YOU HEENA</h1>
+
+  <!-- Floating effects -->
+  <div class="hearts">
+    <div class="heart" style="animation-delay: 0s;"></div>
+    <div class="heart" style="animation-delay: 2s;"></div>
+    <div class="heart" style="animation-delay: 4s;"></div>
+    <div class="heart" style="animation-delay: 1s;"></div>
+    <div class="heart" style="animation-delay: 3s;"></div>
+  </div>
+  <div class="stars">
+    <div class="star" style="animation-delay: 1s;"></div>
+    <div class="star" style="animation-delay: 3s;"></div>
+    <div class="star" style="animation-delay: 5s;"></div>
+    <div class="star" style="animation-delay: 2s;"></div>
+    <div class="star" style="animation-delay: 4s;"></div>
+  </div>
+
+  <!-- Music -->
+  <audio id="bgMusic" loop>
+    <source src="audio/kinikilig.mp3" type="audio/mp3">
+    Your browser does not support audio.
+  </audio>
+
+  <button id="music-btn">Play Music 🎵</button>
+
+  <script>
+    const music = document.getElementById("bgMusic");
+    const btn = document.getElementById("music-btn");
+    let playing = false;
+
+    btn.addEventListener("click", () => {
+      if (!playing) {
+        music.play();
+        btn.textContent = "Pause Music ⏸️";
+        playing = true;
+      } else {
+        music.pause();
+        btn.textContent = "Play Music 🎵";
+        playing = false;
+      }
+    });
+  </script>
+</body>
+</html>
